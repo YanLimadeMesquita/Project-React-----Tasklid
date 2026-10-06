@@ -1,0 +1,215 @@
+
+.project_card {
+    width: 300px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 22px;
+    margin: 1em;
+    color: #f1f1f1;
+    border-top: 3px solid #ffbb33;
+}
+
+.project_card h4 {
+    margin: 0 0 16px 0;
+    font-size: 1.3em;
+    color: #ffbb33;
+}
+
+.category_text {
+    margin-bottom: 16px;
+    font-size: 0.9em;
+    color: #cfcfcf;
+}
+
+.category_text span {
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.9em;
+    color: #cfcfcf;
+}
+
+.category span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.category_text .infra,
+.category .infra {
+    background-color: #ffaebc;
+}
+
+.category_text .desenvolvimento,
+.category .desenvolvimento {
+    background-color: #a0e7e5;
+}
+
+.category_text .desing,
+.category .desing {
+    background-color: #b4f8c8;
+}
+
+.category_text .planejamento,
+.category .planejamento {
+    background-color: #fbe7c6;
+}
+
+.project_actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid #3a3a3a;
+}
+
+.project_actions a,
+.project_actions p {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    text-decoration: none;
+    margin: 0;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.project_actions a:visited {
+    color: inherit;
+}
+
+.edit_btn {
+    background-color: #ffbb33;
+    color: #1e1e1e;
+}
+
+.edit_btn:hover {
+    background-color: #ffc95c;
+}
+
+.remove_btn {
+    background-color: transparent;
+    color:#d96b6b;
+    border:1px solid #4a3030;
+}
+
+.remove_btn:hover {
+    background-color: rgba(255, 187, 51, 0.1);
+}
+
+.project_card h4 {
+    margin: 0 0 16px 0;
+    font-size: 1.3em;
+    color: #ffbb33;
+}
+
+.category_text {
+    margin-bottom: 16px;
+    font-size: 0.9em;
+    color: #cfcfcf;
+}
+
+.category_text span {
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.9em;
+    color: #cfcfcf;
+}
+
+.category span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.category_text .infra,
+.category .infra {
+    background-color: #ffaebc;
+}
+
+.category_text .desenvolvimento,
+.category .desenvolvimento {
+    background-color: #a0e7e5;
+}
+
+.category_text .desing,
+.category .desing {
+    background-color: #b4f8c8;
+}
+
+.category_text .planejamento,
+.category .planejamento {
+    background-color: #fbe7c6;
+}
+
+.project_actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid #3a3a3a;
+}
+
+.project_actions a,
+.project_actions p {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    margin: 0;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.project_actions a:visited {
+    color: inherit;
+}
+
+.edit_btn {
+    background-color: #ffbb33;
+    color: #1e1e1e;
+}
+
+.edit_btn:hover {
+    background-color: #ffc95c;
+}
+
+.remove_btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    background-color: transparent;
+    color:#d96b6b;
+    border:1px solid #4a3030;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.remove_btn:hover {
+    background-color: rgba(255, 187, 51, 0.1);
+}

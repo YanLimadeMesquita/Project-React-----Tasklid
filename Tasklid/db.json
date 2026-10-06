@@ -1,0 +1,47 @@
+{
+  "projects": [
+    {
+      "name": "projeto atualizado",
+      "budget": "2000",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": null,
+      "services": [
+        {
+          "name": "yan",
+          "cost": "100",
+          "description": "Farmar",
+          "id": "4b1768e3-6afe-4547-82eb-c27b5044866e"
+        },
+        {
+          "name": "yan",
+          "cost": "100",
+          "description": "Farmar",
+          "id": "4b1768e3-6afe-4547-82eb-c27b5044866e"
+        }
+      ],
+      "id": "BQBpA0c55Pg"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Infra"
+    },
+    {
+      "id": "2",
+      "name": "Desenvolvimento "
+    },
+    {
+      "id": "3",
+      "name": "Design"
+    },
+    {
+      "id": "4",
+      "name": "Planejamento"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
