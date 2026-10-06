@@ -1,2 +1,2 @@
 # Project-React-----Tasklid
-Programa é um gerenciador de custos de projetos
+Programa com o objetivo de ser um gerenciador de custos de projetos
