@@ -1,36 +1,114 @@
+/* creme 2.0:  #E7DCC9 | creme_escuro: #6B5A3A | dourado: #FBB820 */
+
 .footer {
-    background-color: rgb(46, 46, 46);
-    color: #fff;
-    padding: 3em;
-    text-align: center;
+    background: #E7DCC9;
+    color: #6B5A3A;
+}
+
+.inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5em 1em 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75em;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+/* ===== Marca ===== */
+
+.brand_row {
+    display: flex;
+    align-items: center;
+    gap: .6em;
+    font-size: 1.15em;
+}
+
+.logo {
+    width: 32px;
+    height: auto;
+}
+
+.tagline {
+    margin-top: .5em;
+    font-size: .9em;
+    color: #4A4A45;
+}
+
+/* ===== Links ===== */
+
+.links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.75em;
+}
+
+.nav_list,
+.social_list {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+    list-style: none;
+}
+
+.links a {
+    display: inline-block;
+    padding: .5em 0;
+    color: #4A4A45;
+    text-decoration: none;
+}
+
+.links a:hover {
+    color: #FBB820;
+}
+
+.links a:focus-visible {
+    outline: 2px solid #FBB820;
+    outline-offset: 2px;
 }
 
 .social_list {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-}
-
-.social_list li {
-    margin: 0 1em;
-
-}
-
-.social_list li:hover {
-    color: #fbb820;
-    font-size: 1.2em;
+    padding-left: 1.75em;
+    border-left: 1px solid #3A4A6B;
 }
 
 .social_list svg {
-    font-size: 1.5em;
-    cursor: pointer;
+    display: block;
+    font-size: 1.4em;
 }
 
+/* ===== Copyright ===== */
+
 .copy_right {
-    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid #34456B;
+    font-size: .9em;
+    color: #4e6392;
 }
 
 .copy_right span {
-    font-weight: bold;
-    color: #fbb820;
+    font-weight: 600;
+    color: #c28d12;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 700px) {
+    .top {
+        flex-direction: column;
+    }
+
+    .social_list {
+        padding-left: 0;
+        border-left: none;
+    }
 }

@@ -1,30 +1,158 @@
+/* papel: #FFFEFB | borda: #E7DFD0 | tinta: #1C1C1A | terracota: #B6472B | marinho: #1B2A4A */
+
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #FFFEFB;
+    border-bottom: 1px solid #E7DFD0;
+}
+
+.inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: .7em 1em;
+    box-sizing: border-box;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    background-color: rgb(46, 46, 46);
-    padding: 1em;
+    gap: 1em;
+}
+
+/* ===== Marca ===== */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: .6em;
+    text-decoration: none;
+    color: #1C1C1A;
+}
+
+.logo {
+    width: 36px;
+    height: auto;
+}
+
+.brand_name {
+    font-size: 1.3em;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+/* ===== Menu (desktop) ===== */
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
 }
 
 .list {
     display: flex;
-    list-style: none;
     align-items: center;
+    gap: .25em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.item {
-    margin-right: 1em;
-}
-
-.item a {
-    color: #fff;
+.link {
+    display: block;
+    padding: .55em .9em;
+    border-radius: 8px;
+    color: #4A4A45;
     text-decoration: none;
+    font-weight: 500;
 }
 
-.item a:hover {
-    color: #fbb820;
+.link:hover {
+    color: #1C1C1A;
+    background: #F1ECE1;
 }
 
-.logo {
-    width: 50px;
-    height: auto;
+.link.active {
+    color: #B6472B;
+    background: #F6E6DD;
+}
+
+.cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: .6em 1.2em;
+    border-radius: 8px;
+    background: #B6472B;
+    color: #FFF9F2;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.cta:hover {
+    background: #8F3A1F;
+}
+
+.link:focus-visible,
+.cta:focus-visible,
+.brand:focus-visible,
+.menu_button:focus-visible {
+    outline: 2px solid #1B2A4A;
+    outline-offset: 2px;
+}
+
+/* ===== Botão hambúrguer (só aparece no mobile) ===== */
+
+.menu_button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid #E7DFD0;
+    border-radius: 8px;
+    color: #1C1C1A;
+    cursor: pointer;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 760px) {
+    .menu_button {
+        display: flex;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1em;
+        padding: 1em;
+        background: #FFFEFB;
+        border-bottom: 1px solid #E7DFD0;
+    }
+
+    .menu_open {
+        display: flex;
+    }
+
+    .list {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .link {
+        padding: .8em .9em;
+    }
+
+    .cta {
+        min-height: 44px;
+    }
 }

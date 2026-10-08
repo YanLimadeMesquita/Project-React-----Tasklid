@@ -1,37 +1,558 @@
-.home_container {
-    display: flex;
+/* ===== Tokens usados nesta página ===== */
+/* papel: #F5F1EA | tinta: #1C1C1A | terracota: #B6472B | marinho: #1B2A4A */
+
+html {
     width: 100%;
+}
+
+body {
+    margin: 0;
+    min-width: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+#root {
+    width: 100%;
+    min-width: 0;
+}
+
+
+.hero_section,
+.problem_section,
+.features_section,
+.how_section,
+.cta_band {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.section_intro {
+    max-width: 620px;
+    margin: 0 auto 2.5em;
+    text-align: center;
+}
+
+.section_intro h2 {
+    font-size: 1.9em;
+    margin-bottom: .4em;
+}
+
+.section_intro p {
+    color: #4A4A45;
+    line-height: 1.5;
+}
+
+/* ===== HERO ===== */
+
+.hero_section {
+    padding: 2.5em 0 4em;
+}
+
+.hero_content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3em;
+    align-items: center;
+}
+
+.hero_text {
+    flex: 1 1 420px;
+    min-width: 0;
+    display: flex;
     flex-direction: column;
+    gap: 1.1em;
+}
+
+.badge {
+    display: inline-block;
+    width: fit-content;
+    background: #E7DCC9;
+    color: #6B5A3A;
+    font-size: .8em;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding: .4em .9em;
+    border-radius: 999px;
+}
+
+.hero_text h1 {
+    font-size: 2.5em;
+    line-height: 1.15;
+    margin: 0;
+    max-width: 16ch;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    line-height: 1.55;
+    color: #4A4A45;
+    max-width: 46ch;
+    margin: 0;
+}
+
+.cta_group {
+    display: flex;
+    gap: .9em;
+    flex-wrap: wrap;
+    margin-top: .3em;
+}
+
+.btn_primary,
+.btn_secondary {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 4em;
+    min-height: 44px;
+    padding: .85em 1.6em;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 
-.home_container h1 {
-    font-size: 2.5em;
-    margin-bottom: .5em;
+.btn_primary {
+    background: #B6472B;
+    color: #FFF9F2;
 }
 
-.home_container h1 span {
-    color: #fbb820;
-    padding: 0 .2em;
-    background-color: rgb(46, 46, 46);
-    border-radius: 5px;
-    cursor: pointer;
+.btn_primary:hover {
+    background: #8F3A1F;
 }
 
-.home_container h1 span:hover {
-    background-color: #fbb820;
-    color: rgb(46, 46, 46);
+.btn_secondary {
+    background: transparent;
+    color: #1C1C1A;
+    border: 1.5px solid #D8CFBF;
 }
 
-.home_container p {
-    margin-bottom: 1.5em;
-    color: #454545;
+.btn_secondary:hover {
+    border-color: #B6472B;
+    color: #B6472B;
 }
 
-.home_container img {
-    width: 400px;
-    margin: 2em 0;
+.microcopy {
+    font-size: .9em;
+    color: #8A8577;
+    margin: 0;
 }
 
+/* --- card de preview do dashboard, na hero --- */
+
+.hero_visual {
+    flex: 1 1 360px;
+    min-width: 0;
+    background: #FFFEFB;
+    border: 1px solid #E7DFD0;
+    border-radius: 16px;
+    padding: 1.75em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+    box-shadow: 0 1px 2px rgba(28, 28, 26, .04);
+}
+
+.preview_title {
+    font-size: .8em;
+    font-weight: 600;
+    color: #8A8577;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.preview_row {
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
+}
+
+.preview_row_top {
+    display: flex;
+    justify-content: space-between;
+    font-size: .95em;
+}
+
+.preview_percent {
+    font-weight: 600;
+}
+
+.preview_percent.ok {
+    color: #2F6B3A;
+}
+
+.preview_percent.warn {
+    color: #B68A2E;
+}
+
+.preview_percent.danger {
+    color: #B6472B;
+}
+
+.preview_bar {
+    height: 8px;
+    background: #EEE8DB;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.preview_bar_fill {
+    height: 100%;
+}
+
+.preview_bar_fill.ok {
+    background: #2F6B3A;
+}
+
+.preview_bar_fill.warn {
+    background: #D1A13C;
+}
+
+.preview_bar_fill.danger {
+    background: #B6472B;
+}
+
+.preview_detail {
+    font-size: .85em;
+    color: #8A8577;
+    margin: 0;
+}
+
+.danger_text {
+    color: #B6472B;
+    font-weight: 500;
+}
+
+/* ===== PROBLEMA ===== */
+
+.problem_section {
+    padding: 3em 2em;
+    background: #EFE8D9;
+    border-radius: 20px;
+}
+
+.problem_grid,
+.features_grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5em;
+}
+
+.problem_card {
+    background: #FFFEFB;
+    border-radius: 14px;
+    padding: 1.75em;
+    display: flex;
+    flex-direction: column;
+    gap: .6em;
+}
+
+.problem_card h3 {
+    font-size: 1.15em;
+    margin: 0;
+}
+
+.problem_card p {
+    font-size: .95em;
+    color: #5A564C;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ===== RECURSOS ===== */
+
+.features_section {
+    padding: 4.5em 0;
+}
+
+.feature_card {
+    border: 1px solid #E7DFD0;
+    border-radius: 14px;
+    padding: 1.85em;
+    display: flex;
+    flex-direction: column;
+    gap: .75em;
+}
+
+.feature_icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature_icon.neutral {
+    background: #E7DCC9;
+}
+
+.feature_icon.danger {
+    background: #F3DCCB;
+}
+
+.feature_icon.ok {
+    background: #DCE6DB;
+}
+
+.feature_card h3 {
+    font-size: 1.15em;
+    margin: 0;
+}
+
+.feature_card p {
+    font-size: .95em;
+    color: #5A564C;
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* ===== COMO FUNCIONA ===== */
+
+.how_section {
+    padding: 3em 2em;
+    background: #EFE8D9;
+    border-radius: 20px;
+}
+
+.how_grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2em;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.how_step {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.how_number {
+    font-size: 1.75em;
+    font-weight: 600;
+    color: #B6472B;
+}
+
+.how_step h3 {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.how_step p {
+    font-size: .95em;
+    color: #5A564C;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ===== CTA FINAL ===== */
+
+.cta_band {
+    padding: 2em 0 3em;
+}
+
+.cta_band_inner {
+    background: #1B2A4A;
+    border-radius: 20px;
+    padding: 3em 2.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2em;
+}
+
+.cta_band_inner h2 {
+    font-size: 1.7em;
+    color: #F5F1EA;
+    max-width: 22ch;
+    margin: 0;
+}
+
+/* ===== RESPONSIVO ===== */
+
+
+/* ===== RESPONSIVIDADE TABLET ===== */
+
+@media (max-width: 900px) {
+
+    .hero_content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2.5em;
+    }
+
+    .hero_text,
+    .hero_visual {
+        flex: 0 1 auto;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .problem_grid,
+    .features_grid,
+    .how_grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ===== RESPONSIVIDADE CELULAR ===== */
+
+@media (max-width: 700px) {
+
+    .hero_section,
+    .problem_section,
+    .features_section,
+    .how_section,
+    .cta_band {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* HERO */
+
+    .hero_section {
+        padding: 2.5em 16px 3em;
+    }
+
+    .hero_content {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2em;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .hero_text {
+        flex: 0 1 auto;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        gap: 1.2em;
+    }
+
+    .badge {
+        max-width: 100%;
+        font-size: 0.7em;
+        white-space: normal;
+    }
+
+    .hero_text h1 {
+        font-size: clamp(1.9rem, 8vw, 2.5rem);
+        line-height: 1.15;
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
+    /* BOTÕES */
+
+    .cta_group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .btn_primary,
+    .btn_secondary {
+        width: 100%;
+        max-width: 100%;
+        min-height: 48px;
+        padding: 12px 16px;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .microcopy {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    /* PREVIEW DO DASHBOARD */
+
+    .hero_visual {
+        flex: 0 1 auto;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 1.25em;
+        box-sizing: border-box;
+    }
+
+    .preview_row_top {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    /* SEÇÕES */
+
+    .problem_grid,
+    .features_grid,
+    .how_grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25em;
+    }
+
+    .problem_section,
+    .how_section {
+        padding: 2.5em 1.25em;
+        border-radius: 14px;
+    }
+
+    .features_section {
+        padding: 3em 16px;
+    }
+
+    .section_intro {
+        max-width: 100%;
+        margin-bottom: 2em;
+    }
+
+    .section_intro h2 {
+        font-size: 1.5em;
+    }
+
+    .problem_card,
+    .feature_card {
+        padding: 1.4em;
+        min-width: 0;
+    }
+
+    .cta_band {
+        padding: 2em 16px;
+    }
+
+    .cta_band_inner {
+        padding: 2.5em 1.25em;
+        border-radius: 14px;
+    }
+
+    .cta_band_inner h2 {
+        font-size: 1.5em;
+    }
+}
