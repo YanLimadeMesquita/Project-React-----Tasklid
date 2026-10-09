@@ -1,11 +1,9 @@
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import { useState, useEffect } from "react"
 
 import Message from "../layout/Message"
-import Container from "../layout/Container"
-import LinkButton from "../layout/LinkButton"
-import ProjectCard from "../projects/ProjectCard"
+import ProjectRow from "../pages/ProjectRow"
 import Loading from "../layout/Loading"
 
 import styles from './Projects.module.css'
@@ -53,38 +51,66 @@ function Projects() {
             },
         }).then(resp => resp.json())
         .then(() => {
-            setProjects(project.filter((project) => project.id !== id))
+            setProjects(project.filter((item) => item.id !== id))
             setMessage('Projeto excluído com sucesso!')
         }).catch(err => console.log(err))
 
     }
+
     return (
         <div className={styles.project_container}>
             <div className={styles.title_container}>
-                <h1>Meus Projetos </h1>
-                <LinkButton to="/newprojects" text="Criar Projeto" />
+                <div>
+                    <h1>Meus projetos</h1>
+                    {removeLoading && project.length > 0 && (
+                        <p>{project.length} {project.length === 1 ? 'projeto' : 'projetos'}</p>
+                    )}
+                </div>
+                <Link to="/newprojects" className={styles.btn_primary}>
+                    Novo projeto
+                </Link>
             </div>
-            {message && <Message type="success" msg={message} />}
-            <Container customClass="start">
-                {project.length > 0 &&
-                    project.map((project) => (
-                        <ProjectCard
-                            id={project.id}
-                            name={project.name}
-                            budget={project.budget}
-                            category={project.category.name}
-                            key={project.id}
-                            handleRemove={removeProject}
-                        />
-                    ))
-                }
-                {!removeLoading && <Loading/> }
-                {removeLoading && project.length === 0 && (
-                    <p>Não há projetos registrados</p>
-                )}
-            </Container>
-        </div>
 
+            {message && <Message type="success" msg={message} />}
+
+            {project.length > 0 && (
+                <div className={styles.table_card}>
+                    <table className={styles.table}>
+                        <thead>
+                            <tr>
+                                <th>Projeto</th>
+                                <th>Categoria</th>
+                                <th>Orçamento</th>
+                                <th>Utilizado</th>
+                                <th><span className={styles.sr_only}>Ações</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {project.map((item) => (
+                                <ProjectRow
+                                    key={item.id}
+                                    id={item.id}
+                                    name={item.name}
+                                    client={item.client}
+                                    budget={item.budget}
+                                    cost={item.cost}
+                                    category={item.category.name}
+                                    handleRemove={removeProject}
+                                />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+
+            {!removeLoading && <Loading />}
+
+            {removeLoading && project.length === 0 && (
+                <p className={styles.empty}>
+                    Nenhum projeto ainda. <Link to="/newprojects">Crie o primeiro</Link>.
+                </p>
+            )}
+        </div>
     )
 }
 

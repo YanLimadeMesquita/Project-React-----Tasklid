@@ -1,0 +1,59 @@
+/* terracota: #B6472B | borda: #EEE8DB */
+
+.row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 1.25em;
+    padding: 1em 1.4em;
+    border-top: 1px solid #EEE8DB;
+}
+
+.name {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 700;
+    color: #1C1C1A;
+}
+
+.description {
+    margin: .15em 0 0;
+    font-size: .875em;
+    color: #6B6B65;
+}
+
+.cost {
+    white-space: nowrap;
+}
+
+.remove {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: .9em;
+    font-weight: 600;
+    color: #B6472B;
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: #8F3A1F;
+}
+
+.remove:focus-visible {
+    outline: 2px solid #1B2A4A;
+    outline-offset: 2px;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 480px) {
+    .row {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .remove {
+        justify-self: start;
+    }
+}

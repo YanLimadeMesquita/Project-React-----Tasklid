@@ -1,0 +1,146 @@
+/* tinta: #1C1C1A | terracota: #B6472B | borda: #EEE8DB */
+
+.cell {
+    padding: 1em 1.4em;
+    border-top: 1px solid #EEE8DB;
+    vertical-align: middle;
+}
+
+.name {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 700;
+    color: #1C1C1A;
+}
+
+.client {
+    margin: .15em 0 0;
+    font-size: .875em;
+    color: #6B6B65;
+}
+
+/* ===== Categoria ===== */
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5em;
+    padding: .35em .8em;
+    border-radius: 999px;
+    background: #F1ECE1;
+    color: #4A4A45;
+    font-size: .8em;
+    font-weight: 600;
+}
+
+.dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #D8CFBF; 
+}
+
+.infra { background: #ffaebc; }
+.desenvolvimento { background: #a0e7e5; }
+.design { background: #b4f8c8; }
+.planejamento { background: #fbe7c6; }
+
+/* ===== Orçamento e barra de progresso ===== */
+
+.value {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.progress {
+    min-width: 160px;
+}
+
+.bar {
+    height: 8px;
+    border-radius: 999px;
+    background: #EEE8DB;
+    overflow: hidden;
+}
+
+.bar_fill {
+    height: 100%;
+}
+
+.ok { background: #2F6B3A; }
+.warn { background: #D1A13C; }
+.danger { background: #B6472B; }
+
+.usage {
+    margin: .35em 0 0;
+    font-size: .85em;
+    color: #6B6B65;
+}
+
+.usage_danger {
+    color: #B6472B;
+    font-weight: 600;
+}
+
+/* ===== Ações ===== */
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1em;
+}
+
+.edit {
+    font-size: .9em;
+    font-weight: 600;
+    color: #1C1C1A;
+    text-decoration: none;
+}
+
+.edit:hover {
+    color: #B6472B;
+}
+
+.remove {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: .9em;
+    font-weight: 600;
+    color: #B6472B;
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: #8F3A1F;
+}
+
+.edit:focus-visible,
+.remove:focus-visible {
+    outline: 2px solid #1B2A4A;
+    outline-offset: 2px;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 760px) {
+    .row {
+        display: block;
+        padding: 1em 1.2em;
+        border-top: 1px solid #EEE8DB;
+    }
+
+    .cell {
+        display: block;
+        padding: .35em 0;
+        border-top: none;
+    }
+
+    .actions {
+        justify-content: flex-start;
+        padding-top: .5em;
+    }
+}
