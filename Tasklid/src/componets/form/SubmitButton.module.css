@@ -1,14 +1,25 @@
+/* terracota: #B6472B | terracota escuro: #8F3A1F | foco: #1B2A4A */
+
 .btn {
-    background-color: #222;
-    color: #fff;
-    padding: 0.7em 1.2em;
-    text-decoration: none;
-    transition: .5s;
-    cursor: pointer;
+    width: 100%;
+    min-height: 44px;
+    padding: 0 1.2em;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
+    background: #B6472B;
+    color: #FFF9F2;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
 }
 
 .btn:hover {
-    color: #fbb820;
+    background: #8F3A1F;
+}
+
+.btn:focus-visible {
+    outline: 2px solid #1B2A4A;
+    outline-offset: 2px;
 }

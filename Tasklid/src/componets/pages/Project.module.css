@@ -1,50 +1,194 @@
-.project_details {
-    padding: 2em;
+/* tinta: #1C1C1A | terracota: #B6472B | papel: #FFFEFB | borda: #E7DFD0 */
+
+.project_page {
+    width: 100%;
+    padding: 2em 0;
 }
 
-.project_details h1,
-.project_details h2,
-.project_details p {
-    margin-bottom: 0.5em;
+.back {
+    display: inline-block;
+    margin-bottom: 1.25em;
+    font-size: .9em;
+    color: #6B6B65;
+    text-decoration: none;
 }
 
-.project_details h1 {
-    background-color: rgb(46, 46, 46);
-     color: #fbb820;
-    padding: 0.4em;
+.back:hover {
+    color: #B6472B;
 }
 
-.project_details span {
-    font-weight: bold;
+/* ===== Duas colunas ===== */
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 1.5em;
+    align-items: start;
 }
 
-.details_container,
-.service_form_container {
-    border-bottom: 1px solid #7a7a7a;
-    margin-bottom: 1.2em;
-    padding-bottom: 1.2em;
+.main_column,
+.side_column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+}
+
+/* ===== Cabeçalho do projeto ===== */
+
+.header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     flex-wrap: wrap;
+    gap: 1em;
 }
 
-.btn {
-    background-color: rgb(46, 46, 46);
-    color: #fff;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    transition: 0.5;
+.header h1 {
+    margin: 0 0 .4em;
+    font-size: 1.9em;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75em;
+    color: #4A4A45;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5em;
+    padding: .35em .8em;
+    border-radius: 999px;
+    background: #F1ECE1;
+    color: #4A4A45;
+    font-size: .8em;
+    font-weight: 600;
+}
+
+.dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #D8CFBF;
+}
+
+.infra { background: #ffaebc; }
+.desenvolvimento { background: #a0e7e5; }
+.design { background: #b4f8c8; }
+.planejamento { background: #fbe7c6; }
+
+.btn_outline {
+    min-height: 44px;
+    padding: 0 1.4em;
+    border: 1.5px solid #D8CFBF;
     border-radius: 8px;
+    background: transparent;
+    color: #1C1C1A;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
-    max-height: 40px;
-    border: none;
 }
 
-.btn:hover {
-    color: #fbb820;
+.btn_outline:hover {
+    border-color: #B6472B;
+    color: #B6472B;
 }
 
-.project_info {
-    width: 100%;
+.btn_outline:focus-visible {
+    outline: 2px solid #1B2A4A;
+    outline-offset: 2px;
 }
 
+/* ===== Cartões ===== */
+
+.card {
+    background: #FFFEFB;
+    border: 1px solid #E7DFD0;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.pad {
+    padding: 1.5em;
+}
+
+.card_title {
+    margin: 0;
+    padding: 1.1em 1.4em;
+    font-size: 1.15em;
+}
+
+.card_heading {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.service_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.empty {
+    padding: 1.4em;
+    border-top: 1px solid #EEE8DB;
+    color: #6B6B65;
+}
+
+/* ===== Resumo do orçamento ===== */
+
+.summary_label {
+    margin: 0;
+    font-size: .875em;
+    color: #6B6B65;
+}
+
+.available {
+    display: block;
+    margin: .1em 0 .5em;
+    font-size: 2.1em;
+}
+
+.text_ok { color: #2F6B3A; }
+.text_warn { color: #946F1C; }
+.text_danger { color: #B6472B; }
+
+.bar {
+    height: 12px;
+    margin-bottom: 1em;
+    border-radius: 999px;
+    background: #EEE8DB;
+    overflow: hidden;
+}
+
+.bar_fill {
+    height: 100%;
+}
+
+.ok { background: #2F6B3A; }
+.warn { background: #D1A13C; }
+.danger { background: #B6472B; }
+
+.summary_row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5em;
+    font-size: .9em;
+}
+
+.summary_row span {
+    color: #6B6B65;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}

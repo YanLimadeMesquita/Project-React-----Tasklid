@@ -1,14 +1,27 @@
+/* papel: #FFFEFB | borda: #E7DFD0 | tinta: #1C1C1A */
+
 .newproject_container {
-    width: 450px;
-    margin: 0 auto;
-    padding: 3em;
+    width: 100%;
+    max-width: 520px;
+    margin: 2em auto;
+    padding: 2.25em;
+    background: #FFFEFB;
+    border: 1px solid #E7DFD0;
+    border-radius: 14px;
 }
 
 .newproject_container h1 {
-    margin-bottom: 0.5em;
-
+    margin-bottom: .25em;
+    font-size: 1.75em;
 }
 
 .newproject_container p {
-    color: #454545;
+    color: #6B6B65;
+    line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+    .newproject_container {
+        padding: 1.5em;
+    }
 }
