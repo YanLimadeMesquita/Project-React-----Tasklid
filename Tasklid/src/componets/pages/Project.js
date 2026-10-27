@@ -10,6 +10,7 @@ import Message from '../layout/Message'
 import ProjectsForm from '../projects/ProjectsForm'
 import ServiceForm from '../services/ServiceForm'
 import ServiceRow from '../services/ServiceRow'
+import checkResponse from '../../utils/checkResponse'
 
 function formatMoney(value) {
     return Number(value || 0).toLocaleString('pt-BR', {
@@ -20,12 +21,21 @@ function formatMoney(value) {
     })
 }
 
+// Soma o custo de todos os serviços. Um custo inválido conta como 0.
+function sumServices(services) {
+    return services.reduce(
+        (sum, service) => sum + (parseFloat(service.cost) || 0),
+        0
+    )
+}
+
 function Project() {
 
     const { id } = useParams()
 
     const [project, setProject] = useState({})
     const [services, setServices] = useState([])
+    const [loadError, setLoadError] = useState(false)
     const [showProjectForm, setShowProjectForm] = useState(false)
     const [message, setMessage] = useState('')
     const [type, setType] = useState('')
@@ -40,12 +50,15 @@ function Project() {
                     'Content-type': 'application/json',
                 },
             })
-                .then(resp => resp.json())
+                .then(checkResponse)
                 .then(data => {
                     setProject(data)
                     setServices(data.services)
                 })
-                .catch((err) => console.log(err))
+                .catch((err) => {
+                    console.log(err)
+                    setLoadError(true)
+                })
         }, 550)
     }, [id])
 
@@ -53,6 +66,11 @@ function Project() {
         setMessage(text)
         setType(kind)
         setMessageId((current) => current + 1)
+    }
+
+    function handleRequestError(err) {
+        console.log(err)
+        showMessage('Não foi possível salvar. Verifique se o servidor está rodando.', 'error')
     }
 
     function editPost(project) {
@@ -69,24 +87,28 @@ function Project() {
             },
             body: JSON.stringify(project),
         })
-            .then(resp => resp.json())
+            .then(checkResponse)
             .then(data => {
                 setProject(data)
                 setShowProjectForm(false)
                 showMessage('Projeto atualizado com sucesso', 'success')
             })
-            .catch((err) => console.log(err))
+            .catch(handleRequestError)
     }
 
     function createService(project) {
 
         const lastService = project.services[project.services.length - 1]
+        const serviceCost = parseFloat(lastService.cost)
+
+        if (Number.isNaN(serviceCost) || serviceCost <= 0) {
+            showMessage("Informe um custo válido maior que zero.", 'error')
+            return false
+        }
 
         lastService.id = uuidv4()
 
-        const lastServiceCost = lastService.cost
-
-        const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+        const newCost = sumServices(project.services)
 
         if (newCost > parseFloat(project.budget)) {
             showMessage('Orçamento ultrapassado, verifique o valor do serviço!', 'error')
@@ -105,17 +127,17 @@ function Project() {
             },
             body: JSON.stringify(projectUpdated),
         })
-            .then(resp => resp.json())
+            .then(checkResponse)
             .then(data => {
                 setProject(data)
                 setServices(data.services)
                 setServiceFormKey((current) => current + 1)
                 showMessage('Serviço adicionado com sucesso', 'success')
             })
-            .catch((err) => console.log(err))
+            .catch(handleRequestError)
     }
 
-    function removeService(id, cost) {
+    function removeService(id) {
         const serviceUpdated = project.services.filter(
             (service) => service.id !== id
         )
@@ -123,7 +145,7 @@ function Project() {
         const projectUpdated = {
             ...project,
             services: serviceUpdated,
-            cost: parseFloat(project.cost) - parseFloat(cost),
+            cost: sumServices(serviceUpdated),
         }
 
         fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
@@ -133,24 +155,34 @@ function Project() {
             },
             body: JSON.stringify(projectUpdated),
         })
-            .then(resp => resp.json())
+            .then(checkResponse)
             .then(data => {
                 setProject(data)
                 setServices(data.services)
                 showMessage('Serviço removido com sucesso', 'success')
             })
-            .catch((err) => console.log(err))
+            .catch(handleRequestError)
     }
 
     function toggleProjectForm() {
         setShowProjectForm(!showProjectForm)
     }
 
+    if (loadError) {
+        return (
+            <div className={styles.project_page}>
+                <Link to="/projects" className={styles.back}>&larr; Voltar para projetos</Link>
+                <p className={styles.empty}>
+                    Não foi possível carregar este projeto. Ele pode não existir ou o servidor está fora do ar.
+                </p>
+            </div>
+        )
+    }
+
     if (!project.name) {
         return <Loading />
     }
 
-    // números do resumo
     const budget = Number(project.budget) || 0
     const cost = Number(project.cost) || 0
     const available = budget - cost
@@ -163,7 +195,7 @@ function Project() {
         tone = 'warn'
     }
 
-    const categoryName = project.category.name
+    const categoryName = project.category?.name || 'Sem categoria'
 
     return (
         <div className={styles.project_page}>

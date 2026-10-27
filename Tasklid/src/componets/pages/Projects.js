@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import Message from "../layout/Message"
 import ProjectRow from "../pages/ProjectRow"
 import Loading from "../layout/Loading"
+import checkResponse from "../../utils/checkResponse"
 
 import styles from './Projects.module.css'
 
@@ -12,12 +13,15 @@ function Projects() {
 
     const [project, setProjects] = useState([])
     const [removeLoading, setremoveLoading] = useState(false)
+    const [loadError, setLoadError] = useState(false)
 
     const location = useLocation()
 
     const [message, setMessage] = useState(
         location.state ? location.state.message : ''
     )
+    const [type, setType] = useState('success')
+    const [messageId, setMessageId] = useState(0)
 
     useEffect(() => {
      setTimeout(() => {
@@ -27,14 +31,24 @@ function Projects() {
                 'Content-type': 'application/json',
             },
         })
-            .then(resp => resp.json())
+            .then(checkResponse)
             .then(data => {
                 setProjects(data)
                 setremoveLoading(true)
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                console.log(err)
+                setLoadError(true)
+                setremoveLoading(true)
+            })
      }, 500)
     }, [])
+
+    function showMessage(text, kind) {
+        setMessage(text)
+        setType(kind)
+        setMessageId((current) => current + 1)
+    }
 
     function removeProject(id) {
 
@@ -49,11 +63,16 @@ function Projects() {
             headers: {
                 'Content-type': 'application/json',
             },
-        }).then(resp => resp.json())
-        .then(() => {
-            setProjects(project.filter((item) => item.id !== id))
-            setMessage('Projeto excluído com sucesso!')
-        }).catch(err => console.log(err))
+        })
+            .then(checkResponse)
+            .then(() => {
+                setProjects(project.filter((item) => item.id !== id))
+                showMessage('Projeto excluído com sucesso!', 'success')
+            })
+            .catch((err) => {
+                console.log(err)
+                showMessage('Não foi possível excluir o projeto. Verifique se o servidor está rodando.', 'error')
+            })
 
     }
 
@@ -71,7 +90,7 @@ function Projects() {
                 </Link>
             </div>
 
-            {message && <Message type="success" msg={message} />}
+            {message && <Message key={messageId} type={type} msg={message} />}
 
             {project.length > 0 && (
                 <div className={styles.table_card}>
@@ -94,7 +113,7 @@ function Projects() {
                                     client={item.client}
                                     budget={item.budget}
                                     cost={item.cost}
-                                    category={item.category.name}
+                                    category={item.category?.name || 'Sem categoria'}
                                     handleRemove={removeProject}
                                 />
                             ))}
@@ -105,7 +124,13 @@ function Projects() {
 
             {!removeLoading && <Loading />}
 
-            {removeLoading && project.length === 0 && (
+            {loadError && (
+                <p className={styles.empty}>
+                    Não foi possível carregar os projetos. Verifique se o servidor está rodando e recarregue a página.
+                </p>
+            )}
+
+            {removeLoading && !loadError && project.length === 0 && (
                 <p className={styles.empty}>
                     Nenhum projeto ainda. <Link to="/newprojects">Crie o primeiro</Link>.
                 </p>
