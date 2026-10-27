@@ -1,6 +1,6 @@
 import styles from './Select.module.css'
 
-function Select({ text, name, options, handleOnChange, value }) {
+function Select({ text, name, options, handleOnChange, value, required }) {
     return (
         <div className={styles.form_control}>
             <label htmlFor={name}>{text}</label>
@@ -8,6 +8,7 @@ function Select({ text, name, options, handleOnChange, value }) {
                 name={name}
                 id={name} 
                 onChange={handleOnChange} 
+                required={required}
                 value={value || ''}
             >
                 

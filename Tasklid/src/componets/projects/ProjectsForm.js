@@ -43,9 +43,7 @@ function ProjectsForm({ handleSubmit, btnText, projectData }) {
         })
     }
 
-
-
-        return (
+    return (
         <form onSubmit={submit} className={styles.form}>
             <Input
                 type="text"
@@ -54,6 +52,9 @@ function ProjectsForm({ handleSubmit, btnText, projectData }) {
                 placeholder="Insira o nome do projeto"
                 handleOnChange={handleChange}
                 value={project.name ? project.name : ''}
+                required
+                pattern=".*[A-Za-zÀ-ÿ].*"
+                title="Use pelo menos uma letra"
             />
             <Input
                 type="text"
@@ -62,6 +63,8 @@ function ProjectsForm({ handleSubmit, btnText, projectData }) {
                 placeholder="Insira o nome do cliente"
                 handleOnChange={handleChange}
                 value={project.client ? project.client : ''}
+                pattern=".*[A-Za-zÀ-ÿ].*"
+                title="Use pelo menos uma letra"
             />
             <Input
                 type="number"
@@ -70,6 +73,9 @@ function ProjectsForm({ handleSubmit, btnText, projectData }) {
                 placeholder="Insira o orçamento total"
                 handleOnChange={handleChange}
                 value={project.budget ? project.budget : ''}
+                required
+                min="5"
+                step="5"
             />
 
             <Select
@@ -78,6 +84,7 @@ function ProjectsForm({ handleSubmit, btnText, projectData }) {
                 options={categories}
                 handleOnChange={handleCategory}
                 value={project.category ? project.category.id : ''}
+                required
             />
 
             <SubmitButton text={btnText} />
